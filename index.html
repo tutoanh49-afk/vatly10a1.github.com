@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ôn Tập Vật Lý 10 - Cuối Kỳ I</title>
+    <style>
+        .option{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    box-sizing:border-box;
+}
+.option input{
+    flex-shrink:0;
+    margin-top:4px;
+}
+.option img{
+    max-width:120px;
+    display:block;
+    margin-top:6px;
+}
+        body { font-family: -apple-system, sans-serif; background:#f5f5f7; margin:0; padding:0; }
+        .container { padding:20px; padding-top:env(safe-area-inset-top); padding-bottom:env(safe-area-inset-bottom); }
+        h1 { text-align:center; color:#007aff; font-size:24px; margin:20px 0 40px; }
+        .card { background:white; border-radius:16px; padding:20px; margin-bottom:20px; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .question-num { font-weight:600; color:#007aff; font-size:18px; margin-bottom:10px; }
+        .question-text { font-size:17px; margin-bottom:15px; line-height:1.4; }
+        .option { background:#f2f2f7; border-radius:12px; padding:16px; margin:10px 0; font-size:17px; }
+        .option input { margin-right:12px; transform:scale(1.3); }
+        .btn { display:block; width:90%; max-width:400px; margin:40px auto; padding:16px; background:#007aff; color:white; border:none; border-radius:12px; font-size:18px; font-weight:600; }
+        .hidden { display:none; }
+        .correct-answer { background:#d4edda !important; }
+        .wrong-answer { background:#ffd1d1 !important; }
+        #result { text-align:center; font-size:24px; font-weight:700; margin:40px 0; }
+        /* Phần III - Trả lời ngắn */
+        .short-question { background:#fff; border-radius:12px; padding:16px; margin:15px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+        .short-question b { display:block; margin-bottom:10px; font-size:17px; color:#007aff; }
+        .short-inputs { display:flex; flex-wrap:wrap; gap:10px; }
+        .short-inputs input { width:80px; padding:10px; font-size:16px; text-align:center; border-radius:8px; border:1px solid #ccc; }
+        .short-result { margin-top:12px; font-weight:bold; font-size:16px; }
+        /* Phần III - Tự luận */
+        .essay-question { background:#fff; border-radius:12px; padding:16px; margin:15px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+        .essay-question b { display:block; margin-bottom:10px; font-size:17px; color:#007aff; }
+        textarea { width:100%; height:140px; padding:12px; font-size:16px; border-radius:12px; border:1px solid #ccc; box-sizing:border-box; margin-top:8px; }
+        .essay-answer { display:none; margin-top:12px; background:#e8f4ff; padding:12px; border-left:4px solid #007aff; border-radius:8px; font-size:16px; }
+        .essay-answer b { color:#007aff; }
+        .question-image{
+            width:100%;
+            max-width:420px;
+            margin:12px auto 18px;
+            display:block;
+            border-radius:12px;
+            box-shadow:0 2px 8px rgba(0,0,0,.15);
+            }
+        .ds-table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        .ds-table th, .ds-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .ds-table th { background: #f2f2f7; }
+        .ds-table .option { background: none; padding: 0; margin: 0; display: inline-block; min-width: 80px; }
+    </style>
+</head>
+<body>
+    <!-- ===== IMAGE BANK (IMGBB) ===== -->
+<div id="image-bank" style="display:none">
+<img src="https://i.ibb.co/Qv0pdzvS/1-tl.png" alt="1 tl">
+<img src="https://i.ibb.co/tpQ4kj0w/1-tl-dang2.png" alt="1 tl dang2">
+<img src="https://i.ibb.co/M539GtYB/1-tl-dang3.png" alt="1 tl dang3">
+<img src="https://i.ibb.co/v4xXswMt/1-tln.png" alt="1 tln">
+<img src="https://i.ibb.co/tpBpfV80/2-tl.png" alt="2 tl">
+<img src="https://i.ibb.co/5g9ZyXvj/2-tl-dang3.png" alt="2 tl dang3">
+<img src="https://i.ibb.co/vGnq0N1/3-tl.png" alt="3 tl">
+<img src="https://i.ibb.co/Y7zT7VLN/3-tl-dang2.png" alt="3 tl dang2">
+<img src="https://i.ibb.co/4g4bp31M/4-tl.png" alt="4 tl">
+<img src="https://i.ibb.co/PGxJ4C30/4-tl-dang2.png" alt="4 tl dang2">
+<img src="https://i.ibb.co/Wvz0TSZn/4-tl-dang3.png" alt="4 tl dang3">
+<img src="https://i.ibb.co/20GCbvQs/4-tln.png" alt="4 tln">
+<img src="https://i.ibb.co/spYWwcjG/5-tl.png" alt="5 tl">
+<img src="https://i.ibb.co/ymcwVTS3/5-tl-dang2.png" alt="5 tl dang2">
+<img src="https://i.ibb.co/C3YvzDbQ/6-tl.png" alt="6 tl">
+<img src="https://i.ibb.co/TqDtTpnM/6-tl-dang3.png" alt="6 tl dang3">
+<img src="https://i.ibb.co/zWF4Jmr2/6-tln.png" alt="6 tln">
+<img src="https://i.ibb.co/S4msJgDV/7-tl-dang3.png" alt="7 tl dang3">
+<img src="https://i.ibb.co/GgczYTx/7-tln.png" alt="7 tln">
+<img src="https://i.ibb.co/6Jmd9g4m/8-tl-dang3.png" alt="8 tl dang3">
+<img src="https://i.ibb.co/sJQn2n7X/9-tl-dang3.png" alt="9 tl dang3">
+<img src="https://i.ibb.co/DHG0WHYb/10-tln.png" alt="10 tln">
+<img src="https://i.ibb.co/KBHm1RF/11-tln.png" alt="11 tln">
+</div>
+<!-- ============================== -->
+    <div class="container">
+        <h1>ĐỀ CƯƠNG ÔN TẬP VẬT LÝ LỚP 10<br><small>Cuối Kỳ I - 2025</small></h1>
+        <!-- PHẦN I: Trắc nghiệm nhiều phương án lựa chọn -->
+        <h1 style="margin-top:60px;">PHẦN I - TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h1>
+        <div id="mc-form"></div>
+        <!-- PHẦN II: Trắc nghiệm đúng sai -->
+        <h1 style="margin-top:60px;">PHẦN II - TRẮC NGHIỆM ĐÚNG SAI</h1>
+        <div id="ds-form"></div>
+        <!-- PHẦN III – TRẢ LỜI NGẮN -->
+        <h1 style="margin-top:60px;">PHẦN III – TRẢ LỜI NGẮN</h1>
+        <div id="short"></div>
+        <!-- PHẦN IV – TỰ LUẬN -->
+        <h1 style="margin-top:60px;">PHẦN IV – TỰ LUẬN</h1>
+        <div id="essay"></div>
+        <button class="btn" id="submit-btn">Nộp Bài & Chấm Điểm</button>
+        <button class="btn hidden" id="restart-btn">Làm Lại Toàn Bộ</button>
+        <div id="result" class="hidden"></div>
+    </div>
+    <script>
+        const mcQuestions = [
+            {q:"Câu 1: Công thức liên hệ giữa vận tốc, gia tốc và quãng đường đi được trong chuyển động thẳng biến đổi đều?",o:["A. v + v0 = √2𝑎𝑠.","B. v2 + v02 = 2as.","C. v - v0 = √2𝑎𝑠.","D. v2 - v02 = 2as."],c:3},
+            {q:"Câu 2: Chọn câu đúng. Phương trình độ dịch chuyển của chuyển động thẳng nhanh dần đều là:",o:["A. s = v0 + at2/2  (a, v0 cùng dấu).","B. s = v0 + at2/2  (a, v0 trái dấu).","C. d = v0t + at2/2  (a, v0 cùng dấu).","D. d = v0t + at2/2  (a, v0 trái dấu)."],c:2},
+            {q:"Câu 3: Điều nào sau đây là đúng khi nói đến đơn vị gia tốc?",o:["A. m/s2","B. cm/phút","C. km/h","D. m/s"],c:0},
+            {q:"Câu 4: Chuyển động nào dưới đây có thể coi như là chuyển động rơi tự do?",o:["A. Chuyển động của một viên bi sắt được ném theo phương nằm ngang.","B. Chuyển động của một viên bi sắt được ném theo phương xiên góc.","C. Chuyển động của một viên bi sắt được thả rơi.","D. Chuyển động của một viên bi sắt được ném lên cao."],c:2},
+            {q:"Câu 5: Rơi tự do là một chuyển động",o:["A. thẳng đều.","B. chậm dần đều.","C. nhanh dần.","D. nhanh dần đều."],c:3},
+            {q:"Câu 6: Chọn phát biểu sai.",o:["A. Khi rơi tự do tốc độ của vật tăng dần.","B. Vật rơi tự do khi lực cản không khí rất nhỏ so với trọng lực","C. Vận động viên nhảy dù từ máy bay xuống mặt đất sẽ rơi tự do.","D. Rơi tự do có quỹ đạo là đường thẳng."],c:2},
+            {q:"Câu 7: Chọn ý sai. Vật rơi tự do",o:["A. có phương chuyển động là phương thẳng đứng.","B. có chiều chuyển động hướng từ trên xuống dưới","C. chuyển động thẳng nhanh dần đều.","D. khi rơi trong không khí."],c:3},
+            {q:"Câu 8: Chuyển động của vật rơi tự do không có tính chất nào sau đây?",o:["A. Vận tốc của vật tăng đều theo thời gian.","B. Gia tốc của vật tăng đều theo thời gian","C. Càng gần tới mặt đất vật rơi càng nhanh.","D. Quãng đường vật đi được là hàm số bậc hai theo thời gian."],c:1},
+            {q:"Câu 9: Nhận xét nào sau đây là sai?",o:["A. Vectơ gia tốc rơi tự do có phương thẳng đứng, hướng xuống.","B. Tại cùng một nơi trên Trái Đất gia tốc rơi tự do không đối.","C. Gia tốc rơi tự do thay đối theo vĩ độ.","D. Gia tốc rơi tự do là 9,81 m/s2 tại mọi nơi."],c:3},
+            {q:"Câu 10: Vật rơi tự do",o:["A. khi từ nơi rất cao xuống mặt đất.","B. khi họp lực tác dụng vào vật hướng thẳng xuống mặt đất.","C. chỉ dưới tác dụng của trọng lực","D. khi vật có khối lượng lớn rơi từ cao xuống mặt đất."],c:2},
+            {q:"Câu 11: Trong các chuyển động sau, chuyển động nào được coi là rơi tự do?",o:["A. Chiếc lá đang rơi","B. Hạt bụi chuyển động trong không khí","C. Quả tạ rơi trong không khí","D. Vận động viên đang nhảy dù"],c:2},
+            {q:"Câu 12: Tại một nơi có gia tốc trọng trường g, một vật có khối lượng m rơi tự do từ độ cao h xuống mặt đất. Ngay trước khi chạm đất vật đạt vận tốc",o:["A. v = mgh.","B. v = 2√𝑔ℎ .","C. 𝑣= √2𝑔ℎ .","D. 𝑣= √𝑔ℎ."],c:2},
+            {q:"Câu 13: Một viên bi được ném thẳng đứng lên trên với vận tốc ban đầu v0. Khi viên bi chuyển động, đại lượng có độ lớn không đổi là",o:["A. gia tốc.","B. tốc độ.","C. thế năng.","D. vận tốc."],c:0},
+            {q:"Câu 14: Một vật được ném ngang từ độ cao h với vận tốc v0 nào đó. Bỏ qua sức cản của không khí. Thời gian vật rơi đến mặt đất (t) là?",o:["A. √(2h/g)","B. √(h/g)","C. √(v0/g)","D. √(h/2g)"],c:0},
+            {q:"Câu 15: Một vật được ném ngang từ độ cao h với vận tốc v₀ nào đó. Bỏ qua sức cản của không khí. Tầm xa của vật trên (s) là?",o:["A. v0 √(h/g)","B. v0 √(2h/g)","C. v² / 2g","D. v² / g"],c:1},
+            {q:"Câu 16: Một vật ném theo phương ngang. Khi đang chuyển động sẽ chịu tác dụng của các lực.",o:["A. lực ném và trọng lực.","B. lực cản của không khí và trọng lực.","C. lực ném và lực ma sát.","D. trọng lực và phản lực đàn hồi."],c:1},
+            {q:"Câu 17: Khi nói về phép tổng hợp lực, phát biểu nào sau đây đúng?",o:["A. Tổng hợp lực là phép thay thế các lực tác dụng đồng thời vào hai vật bằng một lực như các lực đó","B. Tổng hợp lực là phép thay thế các lực tác dụng đồng thời vào cùng một vật bằng một lực có tác dụng giống hệt các lực ấy.","C. Phép tổng hợp lực giống với phép phân tích lực.","D. Khi tổng hợp lực thì không phải tuân theo quy tắc hình bình hành."],c:1},
+            {q:"Câu 18: Các lực tác dụng lên một vật gọi là cân bằng khi",o:["A. vật chuyển động với gia tốc không đổi","B. hợp lực của tất cả các lực tác dụng lên vật bằng không","C. hợp lực của tất cả các lực tác dụng lên vật là hàng số.","D. vật đứng yên."],c:1},
+            {q:"Câu 19: Khi nói về phép phân tích lực, phát biểu nào sau đây sai?",o:["A. Phân tích lực là thay thế một lực bằng hai hay nhiều lực có tác dụng giống hệt như lực đó.","B. Khi phân tích một lực thành hai lực thành phần thì phải tuân theo quy tắc hình bình hành.","C. Khi phân tích một lực thành hai lực thành phần thì hai lực thành phần làm thành hai cạnh của hình bình hành.","D. Phân tích lực là phép thay thế các lực tác dụng đồng thời vào vật bằng một lực như các lực đó."],c:3},
+            {q:"Câu 20: Theo định luật I Niu-ton thì",o:["A. với mỗi lực tác dụng luôn có một phản lực trực đối với nó.","B. mọi vật đang chuyển động đều có xu hướng dùng lại do quán tính.","C. một vật sẽ giữ nguyên trạng thái đứng yên hoặc chuyển động thẳng đều nếu nó không chịu tác dụng của bất kì lực nào khác","D. một vật không thể chuyển động được nếu hợp lực tác dụng lên nó bằng 0."],c:2},
+            {q:"Câu 21: Chọn câu đúng. Khi một xe buýt đang chạy thì bất ngờ hăm phanh đột ngột, thì các hành khách:",o:["A. ngả người về phía sau.","B. ngả người sang bên cạnh.","C. dùng lại ngay.","D. chúi người về phía trước."],c:3},
+            {q:"Câu 22: Một vật đang chuyển động bỗng nhiên các lực tác dụng lên nó mất đi thì",o:["A. Vật dùng lại ngay.","B. Vật đổi hướng chuyển động.","C. Vật chuyển động chậm dần rồi dùng lại.","D. Vật tiếp tục chuyển động theo hướng cũ với vận tốc ban đầu."],c:3},
+            {q:"Câu 23: Vật nào sau đây chuyển động theo quán tính?",o:["A. Vật chuyển động trên một đường thẳng.","B. Vật chuyển động theo đường tròn.","C. Vật tiếp tục chuyển động khi tất cả các lực tác dụng lên vật mất đi.","D. Vật rơi từ do từ trên cao xuống không ma sát."],c:2},
+            {q:"Câu 24: Vật nào sau đây chuyển động theo quán tính?",o:["A. Vật chuyển động tròn đều.","B. Vật chuyển động trên quỹ đạo thẳng.","C. Vật chuyển động thẳng đều.","D. Vật chuyển động rơi tự do."],c:2},
+            {q:"Câu 25: Một vật đang chuyển động với vận tốc 10m/s. Nếu bỗng nhiên tất cả các lực tác dụng lên nó mất đi thì:",o:["A. vật chuyển động chậm dần rồi dừng lại.","B. vật dừng lại ngay.","C. vật chuyển động ngược lại với vận tốc 10m/s.","D. vật tiếp tục chuyển động theo hướng cũ với vận tốc 10m/s."],c:3},
+            {q:"Câu 26: Khi nói về một vật chịu tác dụng của lực, phát biểu nào sau đây đúng?",o:["A. Khi không có lực tác dụng, vật không thể chuyển động.","B. Khi ngừng tác dụng lực lên vật, vật này sẽ dừng lại.","C. Gia tốc của vật luôn cùng chiều với chiều của lực tác dụng.","D. Khi có tác dụng lực lên vật, vận tốc của vật tăng."],c:2},
+            {q:"Câu 27: Biểu thức nào sau đây là biểu thức của định luật II Newton khi vật có khối lượng không đổi trong quá trình xem xét?",o:["A. →a = →F / m.","B. F = ma.","C. a = (v - v_0)/(t - t_0).","D. →a = (→v - →v_0)/(t - t_0)."],c:0},
+            {q:"Câu 28: Chọn câu đúng:",o:["A. Lực là nguyên nhân gây ra chuyển động.","B. Lực là nguyên nhân làm biến đổi vận tốc.","C. Có lực tác dụng lên vật thì vật mới chuyển động.","D. Lực không thể cùng hướng với gia tốc."],c:1},
+            {q:"Câu 29: Điều nào sau đây là sai khi nói về tính chất của khối lượng?",o:["A. Khối lượng có tính chất cộng.","B. Khối lượng đo bằng đơn vị (kg).","C. Vật có khối lượng càng lớn thì mức độ quán tính càng nhỏ và ngược lại.","D. Khối lượng là đại lượng vô hướng, dương và không đổi đối với mỗi vật."],c:2},
+            {q:"Câu 30: Khối lượng của một vật:",o:["A. Luôn tỉ lệ thuận với lực tác dụng vào vật.","B. Luôn tỉ lệ nghịch với gia tốc mà vật thu được.","C. Là đại lượng đặc trưng cho mức quán tính của vật.","D. Không phụ thuộc vào thể tích của vật."],c:2},
+            {q:"Câu 31: Theo định luật III Niu-tơn thì lực và phản lực",o:["A. là cặp lực cân bằng.","C. là cặp lực cùng phương, cùng chiều và cùng độ lớn.","B. là cặp lực có cùng điểm đặt.","D. là cặp lực xuất hiện và mất đi đồng thời."],c:3},
+            {q:"Câu 32: Chọn câu trả lời đúng. Hai lực trực đối là hai lực",o:["A. Có cùng độ lớn, cùng chiều.","B. Có cùng giá, cùng độ lớn nhưng ngược chiều.","C. Có cùng độ lớn, ngược chiều.","D. Có cùng giá, cùng độ lớn và cùng chiều."],c:1},
+            {q:"Câu 33: Lực và phản lực không có tính chất sau:",o:["A. luôn xuất hiện từng cặp.","B. luôn cùng loại.","C. luôn cân bằng nhau.","D. luôn cùng giá ngược chiều."],c:2},
+            {q:"Câu 34: Điều nào sau đây là sai khi nói về lực về phản lực. Lực và phản lực",o:["A. luôn xuất hiện và mất đi đồng thời.","B. bao giờ cũng cùng loại.","C. luôn cùng hướng với nhau.","D. không thể cân bằng nhau."],c:2},
+            {q:"Câu 35: Chọn kết quả đúng. Cặp \"Lực và phản lực\" trong định luật III Newton:",o:["A. Có độ lớn không bằng nhau.","B. Có độ lớn bằng nhau nhưng không cùng giá.","C. Tác dụng vào cùng một vật.","D. Tác dụng vào hai vật khác nhau."],c:3},
+            {q:"Câu 36: Chọn câu đúng. Một trái bóng bàn bay từ xa đến đập vào tường và bật ngược trở lại:",o:["A. Lực của trái bóng tác dụng vào tường nhỏ hơn lực của tường tác dụng vào quả bóng.","B. Lực của trái bóng tác dụng vào tường bằng lực của tường tác dụng vào quả bóng.","C. Lực của trái bóng tác dụng vào tường lớn hơn lực của tường tác dụng vào quả bóng.","D. Không đủ cơ sở để kết luận."],c:1},
+            {q:"Câu 37: Công thức tính trọng lượng?",o:["A. P = m(g→)","B. P→ = mg","C. P = mg","D. P = m/g"],c:2},
+            {q:"Câu 38: Một vật đang nằm yên trên mặt đất, lực hấp dẫn do Trái Đất tác dụng vào vật có độ lớn",o:["A. lớn hơn trọng lượng của vật.","B. bằng trọng lượng của vật.","C. nhỏ hơn trọng lượng của vật.","D. bằng 0."],c:1},
+            {q:"Câu 39: Điều nào sau đây là sai khi nói về trọng lực?",o:["A. Trọng lực xác định bởi biểu thức P = mg.","B. Điểm đặt của trọng lực là trọng tâm của vật.","C. Trọng lực tỉ lệ nghịch với khối lượng của chúng.","D. Trọng lực là lực hút của trái đất tác dụng lên vật."],c:2},
+            {q:"Câu 40: Trọng lực tác dụng lên một vật có:",o:["A. Điểm đặt tại tâm của vật, phương thẳng đứng, chiều từ trên xuống.","B. Điểm đặt tại tâm của vật, phương nằm ngang.","C. Điểm đặt tại tâm của vật, phương thẳng đứng, chiều từ dưới lên.","D. Độ lớn luôn thay đổi."],c:0},
+            {q:"Câu 41: Trọng lực là trường hợp riêng của lực hấp dẫn vì",o:["A. Trọng lực là lực hấp dẫn giữa Trái Đất và vật.","B. Trọng lực là lực hút của Trái Đất.","C. Trọng lực tác dụng lên các vật.","D. Trọng lực rất dễ phát hiện còn lực hấp dẫn rất khó phát hiện."],c:0},
+            {q:"Câu 42: Chọn ý sai. Trọng lượng của vật",o:["A. là độ lớn trọng lực tác dụng lên vật.","B. là trọng tâm của vật.","C. kí hiệu là P.","D. được đo bằng lực kế."],c:1},
+            {q:"Câu 43: Câu nào sau đây sai khi nói về lực căng dây?",o:["A. Lực căng của dây có bản chất là lực đàn hồi.","B. Lực căng có thể là lực kéo hoặc lực nén.","C. Lực căng của dây có điểm đặt là điểm mà đầu dây tiếp xúc với vật.","D. Lực căng có phương trùng với chính sợi dây, chiều hướng từ hai đầu vào phần giữa của dây."],c:1},
+            {q:"Câu 44: Khi vật treo trên sợi dây nhẹ cân bằng thì trọng lực tác dụng lên vật",o:["A. cùng hướng với lực căng dây.","B. cân bằng với lực căng dây.","C. hợp với lực căng dây một góc 90°.","D. bằng không."],c:1},
+            {q:"Câu 45: Trong các cách viết công thức của lực ma sát trượt dưới đây, cách viết nào đúng?",o:["A. F(mst) = μt*N","B. F→mst = μt*(N→)","C. Fmst = μt*N","D. F→mst = μt*N"],c:2},
+            {q:"Câu 46: Lực ma sát trượt có chiều luôn",o:["A. ngược chiều với vận tốc của vật.","B. ngược chiều với gia tốc của vật.","C. cùng chiều với vận tốc của vật.","D. cùng chiều với gia tốc của vật."],c:0},
+            {q:"Câu 47: Hệ số ma sát trượt",o:["A. không phụ thuộc vào vật liệu và tính chất của hai mặt tiếp xúc.","B. luôn bằng với hệ số ma sát nghỉ.","C. không có đơn vị.","D. có giá trị lớn nhất bằng 1."],c:2},
+            {q:"Câu 48: Chất lưu được dùng để chỉ chất gì?",o:["A. Chất rắn","B. Chất lỏng","C. Chất khí","D. Chất lỏng và chất khí"],c:3},
+            {q:"Câu 49: Lực cản của chất lưu phụ thuộc vào yếu tố nào?",o:["A. Chỉ phụ thuộc vào hình dạng","B. Chỉ phụ thuộc vào tốc độ","C. Phụ thuộc vào hình dạng và tốc độ.","D. Không phụ thuộc vào hình dạng và tốc độ."],c:2},
+            {q:"Câu 50: Một vật đang lơ lửng ở trong nước chịu tác dụng của những lực nào?",o:["A. Lực đẩy Archimedes và lực cản của nước.","B. Lực đẩy Archimedes và lực ma sát.","C. Trọng lực và lực cản của nước.","D. Trọng lực và lực đẩy Archimedes."],c:3},
+        ];
+        const dsGroups = [
+            {title: "Câu 1: Một vật được thả rơi tự do từ độ h so với mặt đất. Gia tốc rơi tự do là g.", phat: [
+                {q:"Phát biểu 1: Gia tốc rơi tự do phụ thuộc vào vĩ độ địa lí và độ cao.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 2: Vật rơi chỉ chịu tác dụng của trọng lực",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 3: Có phương thẳng đứng, chiều từ dưới lên.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 4: Có phương thẳng đứng, chiều từ trên xuống.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 5: Tại cùng một nơi trên trái đất gia tốc rơi tự do không đổi.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 6: Gia tốc rơi tự do tại mọi nơi đều bằng 10m/s².",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 7: Độ cao của vật được xác định bằng công thức h = 1/2·g·t².",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 8: Thời gian rơi của vật được xác định bằng biểu thức t = √(2h/g).",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 9: Vận tốc của vật khi chạm đất là v = g·t².",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 10: Vận tốc vật chạm đất v = √(2gh).",o:["Đúng","Sai"],c:0},
+            ]},
+            {title: "Câu 2: Ném vật theo phương ngang ở độ cao h so với mặt đất với vận tốc ban đầu là v0, lấy g = 10m/s^2.", phat: [
+                {q:"Phát biểu 1: Phương rơi của vật chỉ có phương thẳng đứng.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 2: Thời gian ném vật là t = √(2h/g).",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 3: Tầm ném xa của vật là L = v0·t = √(2g/h).",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 4: Vận tốc của vật theo phương ngang là v = g.t",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 5: Vận tốc của vật theo phương thẳng đứng là v0",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 6: Theo phương thẳng đứng vật chỉ chịu tác dụng của trọng lực.",o:["Đúng","Sai"],c:0},
+            ]},
+            {title: "Câu 3: Chọn đáp án Đúng- Sai cho các câu hỏi sau:", phat: [
+                {q:"Phát biểu 1: Một vật đang chuyển động, nếu bỗng nhiên tất cả các lực tác dụng lên nó mất đi thì vật dùng lại ngay.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 2: Biểu thức của định luật II Newton khi vật có khối lượng không đổi →a = →F / m.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 3: Lực là nguyên nhân gây ra chuyển động.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 4: Vật có khối lượng càng lớn thì mức độ quán tính càng nhỏ và ngược lại.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 5: Khối lượng là đại lượng vô hướng, dương và không đổi đối với mỗi vật.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 6: Khối lượng của một vật là đại lượng đặc trưng cho mức quán tính của vật.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 7: Theo định luật III Niu-ton thì lực và phản lực là cặp lực cùng phương, cùng chiều và cùng độ lớn.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 8: Hai lực trực đối là hai lực có cùng giá, cùng độ lớn nhưng ngược chiều.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 9: Lực và phản lực luôn xuất hiện và mất đi đồng thời.",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 10: Công thức tính trọng lượng P = m.g",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 11: Trong lực tác dụng lên một vật có điểm đặt tại tâm của vật, phương thẳng đứng, chiều từ dưới lên.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 12: Công thức của lực ma sát trượt là F_mst = μ_k·N",o:["Đúng","Sai"],c:0},
+                {q:"Phát biểu 13: Lực ma sát trượt có chiều luôn cùng chiều với vận tốc của vật.",o:["Đúng","Sai"],c:1},
+                {q:"Phát biểu 14: Hệ số ma sát trượt không phụ thuộc vào vật liệu và tính chất của hai mặt tiếp xúc",o:["Đúng","Sai"],c:1},
+            ]},
+        ];
+        const shortQs = [
+            ["Câu 1 DẠNG 1: Một vật chuyển động thẳng không có vận tốc ban đầu. Trong thời gian 6s, vật đi được quãng đường 54m. Tính gia tốc của vật theo đơn vị m/s².", "3"],
+            ["Câu 2 DẠNG 1: Một quả cầu lăn từ đỉnh một dốc dài 1 m, sau 10 s đến chân dốc. Sau đó, quả cầu tiếp tục lăn trên mặt phẳng ngang được 2 m thì dùng lại. Chiều dương là chiều chuyển động. Gia tốc của quả cầu trên dốc là bao nhiêu cm/s²?", "2"],
+            ["Câu 3 DẠNG 1: Một vật chuyển động thẳng nhanh dần đều với vận tốc ban đầu 2m/s. Sau 4s, vật đi được quãng đường 40m. Tính gia tốc của vật theo đơn vị cm/s²", "400"],
+            ["Câu 1 DẠNG 2: Một người công nhân đẩy chiếc xe trượt có khối lượng m bằng 240 kg qua đoạn đường 2,3m trên một mặt hồ đóng băng không ma sát. Anh ta tác dụng một lực F theo phương ngang có độ lớn không đổi 130N. Gia tốc của xe trượt là bao nhiêu m/s²? (kết quả lấy đến 2 chữ số thập phân, theo đơn vị m/s²)", "0.54"],
+            ["Câu 2 DẠNG 2: Một tô tô có khối lượng m = 1 tấn, sau khi khởi hành được 20 s trên đường thẳng thì đạt tốc độ 54 km/h. Bỏ qua ma sát. Tính lực kéo của ô tô theo đơn vị N?", "750"],
+            ["Câu 3 DẠNG 2: Một lực 4 N tác dụng lên vật có khối lượng 0,8 kg đang đứng yên. Bỏ qua ma sát và các lực cản. Gia tốc của vật bằng bao nhiêu cm/s²?", "500"],
+            ["Câu 4 DẠNG 2: Một quả bóng có khối lượng 500 g đang nằm yên trên mặt đất thì bị một cầu thủ đá bằng một lực 250 N. Bỏ qua mọi ma sát. Gia tốc mà quả bóng thu được là bao nhiêu m/s²?", "500"],
+            ["Câu 5 DẠNG 2: Tác dụng vào vật có khối lượng 5kg, đang đứng yên, một lực theo phương ngang thì vật này chuyển động nhanh dần đều với gia tốc 1 m/s². Độ lớn của lực này là bao nhiêu N?", "5"],
+            ["Câu 6 DẠNG 2: Một quả bóng khối lượng 0,5 kg đang nằm trên mặt đất. Một cầu thủ đá bóng với một lực 250 N. Thời gian chân tác dụng vào bóng là 0,02 s. Quả bóng bay đi với tốc độ bao nhiêu m/s?", "10"],
+            ["Câu 7 DẠNG 2: Vật 8kg trượt xuống một mặt phẳng nghiêng nhăn với gia tốc 2m/s². Lấy g = 10m/s². Lực gây ra gia tốc này bằng bao nhiêu N?", "16"],
+            ["Câu 8 DẠNG 2: Một vật có khối lượng 200 g chuyển động với gia tốc 0,3 m/s². Lực tác dụng vào vật có độ lớn bằng bao nhiêu N? (kết quả lấy đến 1 chữ số thập phân)", "0.1"],
+            ["Câu 9 DẠNG 2: Một vật có khối lượng 1 tấn, bắt đầu chuyển động nhanh dần đều và sau khi đi được 100m thì có vận tốc là 5m/s. Lực tác dụng vào vật có giá trị bao nhiêu N?", "125"],
+            ["Câu 10 DẠNG 2: Cho đồ thị biểu diễn mối liên hệ giữa các lực tác dụng lên một vật và gia tốc gây ra tương ứng như hình bên. Khối lượng của vật là bao nhiêu g? (kết quả lấy 0 chữ số sau dấu phẩy thập phân)", "1000"],
+            ["Câu 11 DẠNG 2: Một vật khối lượng 7kg bắt đầu trượt từ đỉnh tới chân mặt phẳng nghiêng có chiều dài 0,85m trong thời gian 0,5s. Tính hợp lực tác dụng lên vật theo phương nghiêng. (kết quả làm tròn đến 3 chữ số có nghĩa)", "47.6"],
+            ["Câu 1 DẠNG 3: Một ô tô có khối lượng 1 tấn đang chuyển động trên đường nằm ngang, hệ số ma sát của xe tải với mặt đường là 0,1. Lấy g = 10 m/s². Độ lớn lực ma sát là bao nhiêu N?", "1000"],
+            ["Câu 2 DẠNG 3: Người ta đẩy một cái thùng có khối lượng 50kg theo phương ngang bằng một lực 150N. Hệ số ma sát giữa thùng và mặt sàn là 0,35. Lấy g = 10 m/s². Tính độ lớn lực ma sát trượt.", "175"],
+            ["Câu 3 DẠNG 3: Một người đẩy một cái thùng 35kg theo phương ngang bằng một lực 100 (N). Hệ số ma sát giữa thùng và sàn là 0,37. Lấy g=10 m/s². Độ lớn lực ma sát giữa sàn nhà và thùng hàng là bao nhiêu N?", "129.5"],
+            ["Câu 4 DẠNG 3: Một ô tô khối lượng 1,5 tấn chuyển động thẳng đều trên đường. Hệ số ma sát lăn giữa bánh xe và mặt đường là 0,08. Hỏi độ lớn lực làm cản trở chuyển động của xe trên mặt đường (bỏ qua lực cản không khí) là bao nhiêu Newton?", "1200"],
+            ["Câu 1 DẠNG 4: Một người thả một hòn bi từ trên cao xuống đất và đo được thời gian rơi là 3,1 s. Bỏ qua sức cản của không khí. Lấy g = 9,8 m/s². Tính độ cao của nơi thả hòn bi so với mặt đất theo đơn vị mét. Kết quả làm tròn đến hàng phần mười", "47.1"],
+            ["Câu 2 DẠNG 4: Người ta thả một vật rơi tự do từ một tòa tháp thì sau 20s vật chạm đất cho g = 10 m/s^2. Tính độ cao của tòa tháp theo đơn vị mét.", "2000"],
+            ["Câu 3 DẠNG 4: Một hòn đá rơi từ một cái giếng cạn đến đáy giếng mất 3s. Nếu lấy g = 9,8 m/s^2 thì độ sâu của giếng là bao nhiêu? (kết quả lấy đến 1 chữ số thập phân, theo đơn vị m)", "44.1"],
+            ["Câu 4 DẠNG 4: Một người thả rơi một hòn bi từ trên cao xuống đất và đo được thời gian rơi là 3,1 s. Bỏ qua sức cản không khí. Lấy g = 10 m/s^2. Độ cao của nơi thả hòn bi so với mặt đất là bao nhiêu mét? Kết quả làm tròn đến hàng phần mười", "48.1"],
+        ];
+        const essayQs = [
+            {q:"DẠNG 1: BÀI TOÁN ĐỒ THỊ (v-t) TRONG CHUYỂN ĐỘNG THĂNG BIẾN ĐỔI ĐỀU Câu 1: Dựa vào đồ thị (v - t) của vật chuyển động trong hình. Hãy xác định gia tốc và độ dịch chuyển của vật trong các giai đoạn: a) Từ 0 s đến 40 s. b) Từ 80 s đến 160 s. c) Nhận xét về tính chất chuyển động của vật.",a:"a) a = 0.5 m/s², s = 400 m<br>b) a = -0.5 m/s², s = 1600 m<br>c) Chuyển động thẳng biến đổi đều, nhanh dần rồi chậm dần."},
+            {q:"Câu 2: Chất điểm chuyển động có đồ thị vận tốc theo thời gian như hình. a) Mô tả chuyển động của chất điểm trong 2 giây đầu tiên. b) Tính gia tốc quãng đường mà chất điểm đi được trong 2 s đầu",a:"a) Chuyển động thẳng nhanh dần đều.<br>b) a = 5 m/s², s = 10 m"},
+            {q:"Câu 3: Đồ thị vận tốc – thời gian của một vật chuyển động được biểu diễn như hình vẽ. a) Mô tả chuyển động của chất điểm trong 20 giây đầu tiên. b) Tính gia tốc của chất điểm trong 20 s đầu. c. Quãng đường vật đi được từ thời điểm t = 0, đến thời điểm t = 20 s là bao nhiêu?",a:"a) Chuyển động thẳng nhanh dần đều.<br>b) a = 1 m/s²<br>c) s = 200 m"},
+            {q:"Câu 4: Đồ thị vận tốc – thời gian của 1 chất điểm chuyển động được cho như hình vẽ. Quãng đường mà chất điểm đi được sau 1s là bao nhiêu?",a:"s = 5 m"},
+            {q:"Câu 5: Một vật chuyển động thẳng biến đổi đều có đồ thị vận tốc v theo thời gian t như hình vẽ. a. Mô tả chuyển động của vật b. Xác định gia tốc của vật c. Xác định quãng đường vật đi được đến khi dùng lại.",a:"a) Chuyển động thẳng chậm dần đều đến dừng.<br>b) a = -2 m/s²<br>c) s = 100 m"},
+            {q:"Câu 6. Đồ thị mô tả sự thay đổi vận tốc theo thời gian trong chuyển động của một ô tô thể thao đang chạy thử về phía Bắc. a. Gia tốc của ô tô trong 4 s đầu là bao nhiêu? b. Gia tốc của ô tô từ giây thứ 12 đến giây thứ 28 là bao nhiêu? c. Quãng đường ô tô đi được sau 4s đầu là bao nhiêu?",a:"a) a = 5 m/s²<br>b) a = -2.5 m/s²<br>c) s = 40 m"},
+            {q:"DẠNG 2: BÀI TOÁN ĐỘNG LỰC HỌC TRÊN MẶT PHẲNG NGANG Câu 1: Một mẫu gỗ có khối lượng m đặt trên mặt sàn nằm ngang. Người ta truyền cho nó một vận tốc tức thời là 5m/s. Biết hệ số ma sát giữa mẫu gỗ và sàn nhà là 0,2. Lấy g = 10 m/s². a. Tính thời gian để mẫu gỗ dùng lại theo đơn vị giây ? b. Tính quãng đường khúc gỗ đi được tới lúc dùng lại, theo đơn vị m ?",a:"a) t = 2.5 s<br>b) s = 6.25 m"},
+            {q:"Câu 2: Một vật khối lượng 2kg đặt trên mặt phẳng nằm ngang. Khi tác dụng một lực có độ lớn là 1N theo phương ngang vật bắt đầu trượt trên mặt phẳng nằm ngang. Thật ra, sau khi đi được 8m kể từ lúc đứng yên, vật đạt được vận tốc 2m/s. Gia tốc chuyển động, lực ma sát và hệ số ma sát lần lượt là? (Lấy g = 10m/s²)",a:"a = 0.25 m/s², F_ms = 0 N, μ = 0"},
+            {q:"Câu 3: Kéo 1 vật nặng 2kg bằng lực F = 2N làm vật di chuyển đều. Lấy g = 10m/s². Hệ số ma sát trượt giữa vật và sàn là bao nhiêu?",a:"μ = 0.1"},
+            {q:"Câu 4: Một người đẩy một thùng hàng, khối lượng 50kg, trượt trên sàn nhà. Lực đẩy có phương nằm ngang với độ lớn là 180N. Tính gia tốc của thùng hàng theo đơn vị (m/s²), biết hệ số ma sát trượt giữa thùng hàng và sàn nhà là μ = 0,25. Lấy g = 9,8m/s².",a:"a = 0.2 m/s²"},
+            {q:"Câu 5: Một ô tô có khối lượng 1,5 tấn chuyển động trên đường nằm ngang. Hệ số ma sát của xe với mặt đường là 0,01. Biết lực kéo gây ra bởi động cơ song song với mặt đường. Lấy g = 10 m/s^2. Xác định độ lớn của lực kéo theo đơn vị N, để ô tô chuyển động nhanh dần đều với gia tốc 0,25 m/s^2?",a:"F = 525 N"},
+            {q:"DẠNG 3: Bài tập tổng hợp Câu 1: Cho một vật có khối lượng 100kg đặt trên mặt phẳng nằm ngang. Kéo vật bằng lực →F hợp với phương ngang một góc α = 30° để vật chuyển động đều. Biết hệ số ma sát giữa vật và mặt phẳng là μ = 0,2. Lấy g = 10 m/s^2. Độ lớn của lực F là bao nhiêu N?",a:"F = 230.94 N"},
+            {q:"Câu 2: Một cái hòm khối lượng m = 40kg đặt trên mặt sàn nhà. Hệ số ma sát trượt giữa hòm và sàn nhà là μ_t = 0,2. Người ta đẩy hòm bằng một lực F = 200N theo phương hợp với phương nằm ngang một góc α = 30°, chếch xuống phía dưới (Hình vẽ). Hỏi gia tốc của hòm là bao nhiêu m/s^2?",a:"a = 3 m/s²"},
+            {q:"Câu 3: Một quyển sách đặt trên mặt bàn nghiêng và được thả cho trượt xuống. Cho biết góc nghiêng α = 30° so với phương ngang và hệ số ma sát giữa quyển sách và mặt bàn là μ = 0,3. Lấy g = 9,8 m/s^2. Tính gia tốc của quyển sách và quãng đường đi được của nó sau 2s.",a:"a = 2.06 m/s², s = 4.12 m"},
+            {q:"Câu 4: Một vật đặt trên mặt phẳng nghiêng (góc nghiêng α = 30°), được truyền một vận tốc ban đầu v0 = 20 m/s (hình vẽ). Hệ số ma sát giữa vật và mặt phẳng nghiêng là 0,3. Hỏi độ cao lớn nhất H mà vật đạt tới là bao nhiêu cm?",a:"H = 300 cm"},
+            {q:"Câu 5: Một ô tô có khối lượng 1,2 tấn đang lên dốc, biết dốc nghiêng 30° so với mặt phẳng ngang. Lực phát động gây ra bởi động cơ ô tô có độ lớn 8000 N. Hệ số ma sát lăn giữa bánh xe và mặt đường là μ = 0,05. Cho g = 9,8 m/s^2. Tính gia tốc của xe khi lên dốc",a:"a = 0.73 m/s²"},
+            {q:"Câu 6: Kéo một vật m = 200g đi lên một mặt phẳng nghiêng bằng một lực F nằm theo mặt phẳng nghiêng góc nghiêng α = 30° hướng lên. Cho biết hệ số ma sát trượt μ_t = √3/4. Lấy g = 10 m/s^2. Độ lớn lực kéo F_k để vật chuyển động với gia tốc a = 2 m/s^2 là bao nhiêu N?",a:"F_k = 1.2 N"},
+            {q:"Câu 7: Một chiếc xe mô hình khối lượng m1 = 5kg và quả nặng có khối lượng m2 = 2kg được nối với nhau bằng một sợi dây vắt qua ròng rọc như hình vẽ. Biết rằng sợi dây không dãn, khối lượng của dây và ròng rọc không đáng kể. Hệ số ma sát μ = 0,1, lấy g = 10 m/s^2, góc α = 30°. Tìm gia tốc chuyển động và lực căng dây.",a:"a = 1 m/s², T = 15 N"},
+            {q:"Câu 8: Hai vật được nối với nhau bằng một sợi dây lí tưởng vắt qua ròng rọc lý tưởng như hình vẽ bên. Vật treo m2 nặng gấp đôi vật m1 trên mặt bàn rất rộng nằm ngang nhẫn. Tại thời điểm ban đầu dây nối m1 hợp với phương ngang một góc α. Sau khi buông tay các vật bắt đầu chuyển động. Lấy g = 10 m/s^2. Tại thời điểm m1 bắt đầu rời khỏi mặt bàn thì α = 45°, độ lớn gia tốc của m1 là a1 và độ lớn gia tốc của m2 là a2. Hãy tính gia tốc của mỗi vật",a:"a1 = 5 m/s², a2 = 5 m/s²"},
+            {q:"Câu 9: Người ta treo một cái đèn trọng lượng P = 3N vào một giá đỡ gồm hai thanh cứng nhẹ AB và AC như hình vẽ. Biết rằng α = 60° và g = 10m/s^2. Hãy xác định độ lớn của lực mà bóng đèn tác dụng lên thanh AB.",a:"F_AB = 3 N"},
+            {q:"Câu 10: Quả cầu m = 4 kg, bán kính R = 15 cm tựa vào tường trơn nhẵn và được giữ nằm yên nhờ một dây treo gắn vào tường tại A, chiều dài dây AB = 15 cm. Tìm lực căng của dây và lực nén của quả cầu lên tường. Lấy g = 10 m/s².",a:"T = 40 N, N = 40 N"},
+        ];
+        const mcForm = document.getElementById('mc-form');
+        const dsForm = document.getElementById('ds-form');
+        const shortDiv = document.getElementById('short');
+        const essayDiv = document.getElementById('essay');
+        const submit = document.getElementById('submit-btn');
+        const restart = document.getElementById('restart-btn');
+        const result = document.getElementById('result');
+        function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+        let totalQi = 0;
+        function loadMc(){
+            mcForm.innerHTML='';
+            shuffle(mcQuestions).forEach((q,qi)=>{
+                const card=document.createElement('div'); card.className='card';
+                card.innerHTML = `
+                        <div class="question-num">Câu ${qi+1}</div>
+                        <div class="question-text">${q.q}</div>
+                        <div id="opt-${totalQi}"></div>
+                            `;
+                mcForm.appendChild(card);
+                const opts=document.getElementById(`opt-${totalQi}`);
+                shuffle(q.o.map((t,i)=>({t,c:i===q.c}))).forEach(op=>{
+                    const lab=document.createElement('label'); lab.className='option';
+                    lab.innerHTML=`<input type="radio" name="q${totalQi}" value="${op.c?'c':'w'}"> ${op.t}`;
+                    opts.appendChild(lab);
+                });
+                totalQi++;
+            });
+        }
+        function loadDs(){
+            dsForm.innerHTML = '';
+            shuffle(dsGroups).forEach((group, gi) => {
+                const card = document.createElement('div'); card.className = 'card';
+                card.innerHTML = `
+                    <div class="question-num">Câu ${gi+1}</div>
+                    <div class="question-text">${group.title}</div>
+                    <table class="ds-table">
+                        <thead><tr><th>Phát biểu</th><th>Đ-S</th></tr></thead>
+                        <tbody id="table-${gi}"></tbody>
+                    </table>
+                `;
+                dsForm.appendChild(card);
+                const tbody = document.getElementById(`table-${gi}`);
+                shuffle(group.phat).forEach((p, pj) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${p.q.replace(/Phát biểu \d+: /, '')}</td><td id="opt-${totalQi}-${pj}"></td>`;
+                    tbody.appendChild(tr);
+                    const opts = document.getElementById(`opt-${totalQi}-${pj}`);
+                    shuffle(p.o.map((t,i)=>({t,c:i===p.c}))).forEach(op=>{
+                        const lab=document.createElement('label'); lab.className='option';
+                        lab.innerHTML=`<input type="radio" name="q${totalQi}" value="${op.c?'c':'w'}"> ${op.t}`;
+                        opts.appendChild(lab);
+                    });
+                    totalQi++;
+                });
+            });
+        }
+        function loadShort(){
+            shortDiv.innerHTML = '';
+            shuffle(shortQs).forEach((sq, i) => {
+                shortDiv.innerHTML += `
+                <div class="short-question" data-answer="${sq[1]}">
+                    <b>Câu ${i+1}: ${sq[0]}</b>
+                    <div class="short-inputs">
+                        <input type="text">
+                    </div>
+                    <div class="short-result"></div>
+                </div>`;
+            });
+        }
+        function loadEssay(){
+            essayDiv.innerHTML = '';
+            shuffle(essayQs).forEach((e,i) => {
+                essayDiv.innerHTML += `
+                <div class="essay-question">
+                    <b>Câu ${i+1}: ${e.q}</b>
+                    <textarea placeholder="Nhập đáp án của bạn..."></textarea>
+                    <div class="essay-answer"><b>Đáp án mẫu:</b><br>${e.a}</div>
+                </div>`;
+            });
+        }
+        function applyImagesByAlt(){
+            const imgs = document.querySelectorAll("#image-bank img");
+            imgs.forEach(img=>{
+                const alt = img.alt.trim();
+                const match = alt.match(/^(\d+) (tln?|tl)( dang(\d+))?$/);
+                if(!match) return;
+                const num = parseInt(match[1]);
+                const type = match[2];
+                const dang = match[4] ? parseInt(match[4]) : null;
+                const selectors = type === 'tln' ? '.short-question' : '.essay-question';
+                const questions = [...document.querySelectorAll(selectors)];
+                const q = questions.find(q => {
+                    const text = q.querySelector('b').innerText;
+                    const qNum = parseInt(text.match(/Câu (\d+)/)?.[1] || 0);
+                    const qDang = parseInt(text.match(/DẠNG (\d+)/)?.[1] || 0);
+                    return qNum === num && (dang === null || dang === qDang);
+                });
+                if(q){
+                    const clone = img.cloneNode(true);
+                    clone.className = 'question-image';
+                    q.insertBefore(clone, q.querySelector('textarea') || q.lastChild);
+                }
+            });
+        }
+        submit.onclick = () => {
+            if(confirm('Bạn chắc chắn muốn nộp bài và chấm điểm toàn bộ?')){
+                let score = 0;
+                const totalMC = mcQuestions.length + dsGroups.reduce((sum, g) => sum + g.phat.length, 0);
+                // Chấm trắc nghiệm
+                document.querySelectorAll('.card').forEach(card => {
+                    card.querySelectorAll('.option').forEach(opt => {
+                        const inp = opt.querySelector('input');
+                        if(inp && inp.value === 'c') opt.classList.add('correct-answer');
+                        const name = inp.name;
+                        const sel = card.querySelector(`input[name="${name}"]:checked`);
+                        if(sel && sel === inp && inp.value !== 'c') opt.classList.add('wrong-answer');
+                        if(sel && sel.value === 'c') score++;
+                    });
+                    card.querySelectorAll('input').forEach(i => i.disabled = true);
+                });
+                // Chấm trả lời ngắn
+                document.querySelectorAll('.short-question').forEach(q => {
+                    const ans = q.dataset.answer;
+                    const inputs = q.querySelectorAll('input');
+                    let ok = false;
+                    inputs.forEach(i => {
+                        const val = i.value.trim().replace(',','.');
+                        if(val !== "" && parseFloat(val) === parseFloat(ans.replace(',','.'))) ok = true;
+                    });
+                    const r = q.querySelector('.short-result');
+                    if(ok){
+                        r.textContent = "✓ Đúng";
+                        r.style.color = "#34c759";
+                    } else {
+                        r.textContent = "✗ Sai (Đáp án: " + ans + ")";
+                        r.style.color = "#ff3b30";
+                    }
+                    inputs.forEach(i => i.disabled = true);
+                });
+                // Hiện đáp án tự luận
+                document.querySelectorAll('.essay-answer').forEach(a => {
+                    a.style.display = "block";
+                });
+                result.innerHTML = `Kết quả trắc nghiệm: Bạn đúng <span style="color:#34c759">${score}</span> / ${totalMC} câu!<br>Phần trả lời ngắn và tự luận đã được chấm/hiện đáp án.`;
+                result.classList.remove('hidden');
+                submit.classList.add('hidden');
+                restart.classList.remove('hidden');
+            }
+        };
+        restart.onclick = () => location.reload();
+        // Khởi tạo toàn bộ
+        loadMc();
+        loadDs();
+        loadShort();
+        loadEssay();
+        applyImagesByAlt();
+    </script>
+</body>
+</html>
