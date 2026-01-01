@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Ôn Tập Vật Lý 10 - Cuối Kỳ I</title>
+    <title>ÔN TẬP VẬT LÝ 10 - HỌC KỲ I</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -18,7 +16,7 @@
                         danger: '#D32929',
                         pink: '#EC4899',
                         green: '#10B981',
-                        blue: '#1C3FAA',
+                        blue: '#3B82F6',
                         red: '#EF4444',
                         purple: '#8B5CF6'
                     }
@@ -32,25 +30,24 @@
             --success-color: #91C714;
             --danger-color: #D32929;
             --bg-color: #f8fafc;
-            --card-bg: rgba(255,255,255,0.92);
+            --card-bg: rgba(255,255,255,0.9);
             --text-primary: #1e293b;
             --text-secondary: #64748b;
         }
-        [data-theme="pink"]   { --primary-color: #EC4899; --success-color: #10B981; --danger-color: #EF4444; }
-        [data-theme="green"]  { --primary-color: #10B981; --success-color: #EC4899; --danger-color: #EF4444; }
-        [data-theme="blue"]   { --primary-color: #1C3FAA; --success-color: #10B981; --danger-color: #EF4444; }
-        [data-theme="red"]    { --primary-color: #EF4444; --success-color: #10B981; --danger-color: #EC4899; }
+        [data-theme="pink"] { --primary-color: #EC4899; --success-color: #10B981; --danger-color: #EF4444; }
+        [data-theme="green"] { --primary-color: #10B981; --success-color: #EC4899; --danger-color: #EF4444; }
+        [data-theme="blue"] { --primary-color: #3B82F6; --success-color: #10B981; --danger-color: #EF4444; }
+        [data-theme="red"] { --primary-color: #EF4444; --success-color: #10B981; --danger-color: #EC4899; }
         [data-theme="purple"] { --primary-color: #8B5CF6; --success-color: #10B981; --danger-color: #EF4444; }
-
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-color);
             margin: 0;
-            min-height: 100dvh;
-            position: relative;
             overflow-x: hidden;
+            position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
-
         .animated-bg {
             position: fixed;
             inset: 0;
@@ -59,7 +56,6 @@
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
-
         .animated-bg::before {
             content: '';
             position: absolute;
@@ -69,57 +65,45 @@
                         radial-gradient(circle at 40% 80%, rgba(120,219,255,0.3) 0%, transparent 50%);
             animation: float 20s ease-in-out infinite;
         }
-
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(180deg); } }
-
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 1rem;
             position: relative;
             z-index: 1;
         }
-
         .card {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: all 0.4s ease;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .card:hover { transform: translateY(-8px); box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
-
+        .card:hover { transform: translateY(-5px); box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
         .header {
-            text-align: center;
-            padding: 4rem 2rem 3rem;
-            color: white;
             background: linear-gradient(135deg, var(--primary-color), rgba(28,63,170,0.8));
-            border-radius: 24px;
-            margin-bottom: 3rem;
+            color: white;
+            padding: 40px 24px;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-
-        .header .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: url('https://i.ibb.co/HfM9CsKV/V-1.png') center/cover no-repeat;
-            margin: 0 auto 1.5rem;
-            border: 6px solid white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-
-        .header h1 { font-size: 3rem; font-weight: 900; margin: 0; }
-        .header small { font-size: 1.4rem; opacity: 0.9; }
-
-        .mode-card { padding: 50px 24px; text-align: center; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); backdrop-filter: blur(20px); }
-
+        .mode-card {
+            padding: 50px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(20px);
+        }
         .mode-btn {
             display: block;
             width: 100%;
@@ -135,13 +119,18 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .mode-btn:hover {
             border-color: var(--primary-color);
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 20px 40px rgba(28,63,170,0.2);
         }
-
+        .question-card {
+            padding: 40px 24px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
         .part-title {
             font-size: 28px;
             font-weight: 800;
@@ -150,7 +139,6 @@
             margin: 48px 0 32px;
             text-transform: uppercase;
         }
-
         .question-num {
             font-size: 28px;
             font-weight: 800;
@@ -158,9 +146,19 @@
             margin-bottom: 20px;
             text-align: center;
         }
-
-        .question-text { font-size: 18px; line-height: 1.7; margin-bottom: 30px; color: var(--text-primary); }
-
+        .question-text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+        }
+        .question-image {
+            max-width: 100%;
+            border-radius: 16px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
         .option {
             background: rgba(248,250,252,0.8);
             border: 2px solid rgba(226,232,240,0.8);
@@ -170,93 +168,23 @@
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
-            align-items: flex-start;
-            gap: 16px;
+            align-items: center;
             margin-bottom: 16px;
         }
-
         .option input {
-            margin-top: 4px;
+            margin-right: 16px;
             transform: scale(1.3);
             accent-color: var(--primary-color);
         }
-
         .option:hover {
             background: rgba(238,242,255,0.8);
             border-color: var(--primary-color);
             transform: translateX(8px);
         }
-
         .option.correct { background: rgba(212,237,218,0.9); border-color: var(--success-color); }
         .option.wrong { background: rgba(252,232,232,0.9); border-color: var(--danger-color); }
-
-        .question-image {
-            width: 100%;
-            max-width: 500px;
-            margin: 1.5rem auto;
-            display: block;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .ds-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .ds-table th, .ds-table td {
-            border: 1px solid #ddd;
-            padding: 16px;
-            text-align: left;
-        }
-
-        .ds-table th {
-            background: rgba(28,63,170,0.1);
-            font-weight: 600;
-        }
-
-        .short-question b, .essay-question b {
-            font-size: 20px;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .fill-input {
-            width: 100%;
-            padding: 16px;
-            font-size: 16px;
-            border-radius: 12px;
-            border: 2px solid rgba(226,232,240,0.8);
-            margin-top: 12px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 20px;
-            font-size: 18px;
-            border-radius: 16px;
-            border: 2px solid rgba(226,232,240,0.8);
-            margin-top: 20px;
-            box-sizing: border-box;
-        }
-
-        .essay-answer {
-            display: none;
-            margin-top: 30px;
-            background: rgba(28,63,170,0.1);
-            padding: 20px;
-            border-radius: 16px;
-            border-left: 5px solid var(--primary-color);
-            font-size: 17px;
-        }
-
         .submit-btn {
             width: 100%;
-            max-width: 600px;
-            margin: 40px auto;
             padding: 20px;
             background: linear-gradient(135deg, var(--primary-color), rgba(28,63,170,0.8));
             color: white;
@@ -264,19 +192,30 @@
             border-radius: 16px;
             font-size: 19px;
             font-weight: 600;
+            margin-top: 32px;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(28,63,170,0.3);
             transition: all 0.3s;
-            display: block;
         }
-
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(28,63,170,0.4); }
-
-        .feedback { margin-top: 24px; padding: 24px; border-radius: 16px; font-size: 20px; text-align: center; font-weight: 700; backdrop-filter: blur(10px); opacity: 0; transform: translateY(20px); transition: all 0.5s; }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(28,63,170,0.4);
+        }
+        .feedback {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 16px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s;
+        }
         .feedback.show { opacity: 1; transform: translateY(0); }
         .feedback.correct { background: rgba(212,237,218,0.9); color: #155724; border: 1px solid var(--success-color); }
         .feedback.wrong { background: rgba(252,232,232,0.9); color: #721c24; border: 1px solid var(--danger-color); }
-
         .settings-btn {
             position: fixed;
             top: 20px;
@@ -292,9 +231,12 @@
             align-items: center;
             justify-content: center;
         }
-
-        .settings-icon { width: 32px; height: 32px; background: url('https://cdn-icons-png.flaticon.com/512/2040/2040504.png') no-repeat center; background-size: contain; }
-
+        .settings-icon {
+            width: 32px;
+            height: 32px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2040/2040504.png') no-repeat center;
+            background-size: contain;
+        }
         .setting-overlay {
             position: fixed;
             inset: 0;
@@ -305,74 +247,96 @@
             justify-content: center;
         }
         .setting-overlay.show { display: flex; }
-
-        .theme-selector { background: rgba(255,255,255,0.95); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); backdrop-filter: blur(10px); text-align: center; max-width: 90%; }
-        .theme-btn { display: inline-block; width: 50px; height: 50px; border-radius: 50%; margin: 10px; cursor: pointer; border: 4px solid transparent; transition: all 0.3s; }
-        .theme-btn.active { border-color: #fff; transform: scale(1.2); box-shadow: 0 0 20px rgba(0,0,0,0.4); }
-
+        .theme-selector {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 90%;
+        }
+        .theme-btn {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 10px;
+            cursor: pointer;
+            border: 4px solid transparent;
+            transition: all 0.3s;
+        }
+        .theme-btn.active {
+            border-color: #fff;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
         @media (max-width: 768px) {
-            .header h1 { font-size: 2.5rem; }
-            .header .avatar { width: 100px; height: 100px; }
-            .part-title, .question-num { font-size: 24px; }
+            .header h1 { font-size: 2.2rem; }
+            .question-num, .part-title { font-size: 24px; }
+            .settings-btn { width: 50px; height: 50px; top: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
 
+    <!-- Nút đổi theme -->
     <div class="settings-btn" id="settings-btn">
         <div class="settings-icon"></div>
     </div>
-
     <div class="setting-overlay" id="setting-overlay">
         <div class="theme-selector">
-            <h3 class="text-3xl font-bold mb-10">Chọn màu chủ đề</h3>
-            <div class="theme-btn active" style="background:#1C3FAA" data-theme="default"></div>
-            <div class="theme-btn" style="background:#EC4899" data-theme="pink"></div>
-            <div class="theme-btn" style="background:#10B981" data-theme="green"></div>
-            <div class="theme-btn" style="background:#EF4444" data-theme="red"></div>
-            <div class="theme-btn" style="background:#8B5CF6" data-theme="purple"></div>
+            <h3 class="text-2xl font-bold mb-8">Chọn màu chủ đề</h3>
+            <div class="theme-btn active" style="background: #1C3FAA;" data-theme="default"></div>
+            <div class="theme-btn" style="background: #EC4899;" data-theme="pink"></div>
+            <div class="theme-btn" style="background: #10B981;" data-theme="green"></div>
+            <div class="theme-btn" style="background: #3B82F6;" data-theme="blue"></div>
+            <div class="theme-btn" style="background: #EF4444;" data-theme="red"></div>
+            <div class="theme-btn" style="background: #8B5CF6;" data-theme="purple"></div>
         </div>
     </div>
 
-    <div class="container pt-10">
-        <div class="card header">
-            <div class="avatar"></div>
+    <div class="container pt-8">
+        <!-- HEADER -->
+        <div class="card header mb-8">
             <h1>ÔN TẬP VẬT LÝ 10</h1>
-            <small>Cuối Kỳ I - 2025</small>
+            <small class="text-white/80">Học kỳ I - 2025-2026</small>
         </div>
 
+        <!-- CHỌN CHẾ ĐỘ -->
         <div id="mode-selection" class="card mode-card">
             <h2 class="text-3xl font-bold text-[var(--primary-color)] mb-8">Chọn chế độ làm bài</h2>
             <button class="mode-btn" id="mode-exam">
                 <div class="text-4xl mb-4">📝</div>
                 Chế độ thi
-                <p class="text-lg mt-4 text-[var(--text-secondary)]">Làm toàn bộ đề (có tự luận)</p>
+                <p class="text-lg mt-4 text-[var(--text-secondary)]">Làm toàn bộ đề một lần</p>
             </button>
             <button class="mode-btn" id="mode-challenge">
                 <div class="text-4xl mb-4">⚔️</div>
                 Chế độ thử thách
-                <p class="text-lg mt-4 text-[var(--text-secondary)]">Làm từng câu (không tự luận) - Sai làm lại từ đầu</p>
+                <p class="text-lg mt-4 text-[var(--text-secondary)]">Làm từng câu - Sai là làm lại từ đầu</p>
             </button>
         </div>
 
-        <div id="quiz-area" class="hidden">
+        <!-- KHU VỰC LÀM BÀI -->
+        <div id="quiz-area" class="hidden mt-8">
             <div id="exam-mode" class="hidden">
-                <div id="exam-content"></div>
-                <button class="submit-btn" id="submit-exam">NỘP BÀI & CHẤM ĐIỂM</button>
-                <div id="exam-result" class="hidden card text-center py-12 mt-12">
-                    <h2 class="text-5xl font-bold text-[var(--primary-color)] mb-8">KẾT QUẢ</h2>
-                    <div id="exam-result-text" class="text-6xl font-bold mb-10"></div>
-                    <button class="submit-btn" id="back-to-mode">Quay lại chọn chế độ</button>
+                <div id="exam-questions"></div>
+                <button class="submit-btn card" id="submit-exam">NỘP BÀI & CHẤM ĐIỂM</button>
+                <div id="exam-result" class="hidden card mt-8 text-center py-12">
+                    <h2 class="text-3xl font-bold text-[var(--primary-color)] mb-6">KẾT QUẢ</h2>
+                    <div id="exam-result-text" class="text-5xl font-bold mb-8"></div>
+                    <button class="submit-btn card mt-8" id="back-to-mode">Quay lại chọn chế độ</button>
                 </div>
             </div>
 
             <div id="challenge-mode" class="hidden">
                 <div class="card question-card text-center">
-                    <div id="challenge-progress" class="text-2xl font-medium text-[var(--primary-color)] mb-6"></div>
-                    <div class="mb-10">
-                        <div class="text-7xl font-bold text-[var(--primary-color)]" id="current-streak">0</div>
-                        <div class="text-2xl text-[var(--text-secondary)]">Chuỗi đúng liên tiếp</div>
+                    <div id="challenge-progress" class="text-xl font-medium text-[var(--primary-color)] mb-6"></div>
+                    <div class="mb-8">
+                        <div class="text-6xl font-bold text-[var(--primary-color)]" id="current-streak">0</div>
+                        <div class="text-xl text-[var(--text-secondary)]">Chuỗi đúng liên tiếp</div>
                     </div>
                     <div id="current-question"></div>
                     <button class="submit-btn hidden" id="submit-current">NỘP CÂU NÀY</button>
@@ -383,36 +347,36 @@
         </div>
     </div>
 
-    <!-- IMAGE BANK (ẨN) - BẠN PASTE ĐẦY ĐỦ TỪ CODE GỐC VÀO ĐÂY -->
+    <!-- IMAGE BANK -->
     <div id="image-bank" style="display:none">
         <img src="https://i.ibb.co/Qv0pdzvS/1-tl.png" alt="1 tl">
-<img src="https://i.ibb.co/tpQ4kj0w/1-tl-dang2.png" alt="1 tl dang2">
-<img src="https://i.ibb.co/M539GtYB/1-tl-dang3.png" alt="1 tl dang3">
-<img src="https://i.ibb.co/v4xXswMt/1-tln.png" alt="1 tln">
-<img src="https://i.ibb.co/tpBpfV80/2-tl.png" alt="2 tl">
-<img src="https://i.ibb.co/5g9ZyXvj/2-tl-dang3.png" alt="2 tl dang3">
-<img src="https://i.ibb.co/vGnq0N1/3-tl.png" alt="3 tl">
-<img src="https://i.ibb.co/Y7zT7VLN/3-tl-dang2.png" alt="3 tl dang2">
-<img src="https://i.ibb.co/4g4bp31M/4-tl.png" alt="4 tl">
-<img src="https://i.ibb.co/PGxJ4C30/4-tl-dang2.png" alt="4 tl dang2">
-<img src="https://i.ibb.co/Wvz0TSZn/4-tl-dang3.png" alt="4 tl dang3">
-<img src="https://i.ibb.co/20GCbvQs/4-tln.png" alt="4 tln">
-<img src="https://i.ibb.co/spYWwcjG/5-tl.png" alt="5 tl">
-<img src="https://i.ibb.co/ymcwVTS3/5-tl-dang2.png" alt="5 tl dang2">
-<img src="https://i.ibb.co/C3YvzDbQ/6-tl.png" alt="6 tl">
-<img src="https://i.ibb.co/TqDtTpnM/6-tl-dang3.png" alt="6 tl dang3">
-<img src="https://i.ibb.co/zWF4Jmr2/6-tln.png" alt="6 tln">
-<img src="https://i.ibb.co/S4msJgDV/7-tl-dang3.png" alt="7 tl dang3">
-<img src="https://i.ibb.co/GgczYTx/7-tln.png" alt="7 tln">
-<img src="https://i.ibb.co/6Jmd9g4m/8-tl-dang3.png" alt="8 tl dang3">
-<img src="https://i.ibb.co/sJQn2n7X/9-tl-dang3.png" alt="9 tl dang3">
-<img src="https://i.ibb.co/DHG0WHYb/10-tln.png" alt="10 tln">
-<img src="https://i.ibb.co/KBHm1RF/11-tln.png" alt="11 tln">
+        <img src="https://i.ibb.co/tpQ4kj0w/1-tl-dang2.png" alt="1 tl dang2">
+        <img src="https://i.ibb.co/M539GtYB/1-tl-dang3.png" alt="1 tl dang3">
+        <img src="https://i.ibb.co/v4xXswMt/1-tln.png" alt="1 tln">
+        <img src="https://i.ibb.co/tpBpfV80/2-tl.png" alt="2 tl">
+        <img src="https://i.ibb.co/5g9ZyXvj/2-tl-dang3.png" alt="2 tl dang3">
+        <img src="https://i.ibb.co/vGnq0N1/3-tl.png" alt="3 tl">
+        <img src="https://i.ibb.co/Y7zT7VLN/3-tl-dang2.png" alt="3 tl dang2">
+        <img src="https://i.ibb.co/4g4bp31M/4-tl.png" alt="4 tl">
+        <img src="https://i.ibb.co/PGxJ4C30/4-tl-dang2.png" alt="4 tl dang2">
+        <img src="https://i.ibb.co/Wvz0TSZn/4-tl-dang3.png" alt="4 tl dang3">
+        <img src="https://i.ibb.co/20GCbvQs/4-tln.png" alt="4 tln">
+        <img src="https://i.ibb.co/spYWwcjG/5-tl.png" alt="5 tl">
+        <img src="https://i.ibb.co/ymcwVTS3/5-tl-dang2.png" alt="5 tl dang2">
+        <img src="https://i.ibb.co/C3YvzDbQ/6-tl.png" alt="6 tl">
+        <img src="https://i.ibb.co/TqDtTpnM/6-tl-dang3.png" alt="6 tl dang3">
+        <img src="https://i.ibb.co/zWF4Jmr2/6-tln.png" alt="6 tln">
+        <img src="https://i.ibb.co/S4msJgDV/7-tl-dang3.png" alt="7 tl dang3">
+        <img src="https://i.ibb.co/GgczYTx/7-tln.png" alt="7 tln">
+        <img src="https://i.ibb.co/6Jmd9g4m/8-tl-dang3.png" alt="8 tl dang3">
+        <img src="https://i.ibb.co/sJQn2n7X/9-tl-dang3.png" alt="9 tl dang3">
+        <img src="https://i.ibb.co/DHG0WHYb/10-tln.png" alt="10 tln">
+        <img src="https://i.ibb.co/KBHm1RF/11-tln.png" alt="11 tln">
     </div>
 
     <script>
-        // === DISCORD WEBHOOK ===
-        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1452163646766579753/zbvqQ_sMaQmpCxcftbdAGw5LQ-o_ihmSC98HyTqmtmpJCNE7Qmu8sWADU_BsoCwMsyYu'; // <-- THAY BẰNG WEBHOOK THẬT
+        // === DISCORD WEBHOOK - THAY BẰNG WEBHOOK THẬT CỦA BẠN ===
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1452163646766579753/zbvqQ_sMaQmpCxcftbdAGw5LQ-o_ihmSC98HyTqmtmpJCNE7Qmu8sWADU_BsoCwMsyYu';
 
         async function getPublicIP() {
             try {
@@ -424,14 +388,15 @@
             }
         }
 
-        async function sendToDiscord({ mode, score, streak, total }) {
+        async function sendToDiscord({ mode, score, total, streak }) {
+            if (!DISCORD_WEBHOOK_URL.includes('discord.com/api/webhooks')) return;
+
             try {
                 const ip = await getPublicIP();
-                const modeText = mode === 'exam' ? 'Chế độ thi' : 'Chế độ thử thách';
-                const resultText = mode === 'exam' 
-                    ? `${score}/${total} câu trắc nghiệm đúng` 
-                    : `Streak: ${streak}/${total}`;
                 const time = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+                const resultText = mode === 'exam'
+                    ? `${score}/${total} câu đúng\nĐiểm: ${Math.round((score / total) * 10 * 100) / 100}`
+                    : `Streak: ${streak}/${total}`;
 
                 await fetch(DISCORD_WEBHOOK_URL, {
                     method: 'POST',
@@ -439,26 +404,25 @@
                     body: JSON.stringify({
                         embeds: [{
                             title: "📊 Kết quả ôn tập Vật Lý 10",
-                            description: "Một người vừa hoàn thành bài tập!",
-                            color: mode === 'exam' ? 3447003 : 16763904, // Xanh dương / Vàng
+                            color: mode === 'exam' ? 3447003 : 16763904,
                             fields: [
                                 { name: "Môn học", value: "#vatly", inline: true },
-                                { name: "Chế độ", value: modeText, inline: true },
-                                { name: "Kết quả", value: resultText, inline: true },
-                                { name: "Thời gian", value: time, inline: false },
-                                { name: "IP người làm", value: `\`\`\`${ip}\`\`\``, inline: false }
+                                { name: "Chế độ", value: mode === 'exam' ? 'Chế độ thi' : 'Chế độ thử thách', inline: true },
+                                { name: "Kết quả", value: resultText, inline: false },
+                                { name: "Thời gian", value: time, inline: true },
+                                { name: "IP", value: `\`\`\`${ip}\`\`\``, inline: false }
                             ],
-                            footer: { text: "Ôn tập Vật Lý 10 - Cuối Kỳ I 2025" },
+                            footer: { text: "Ôn tập Vật Lý 10 - Học kỳ I 2025-2026" },
                             timestamp: new Date().toISOString()
                         }]
                     })
                 });
-            } catch (error) {
-                console.error('Lỗi gửi Discord:', error);
+            } catch (e) {
+                console.error('Lỗi gửi Discord:', e);
             }
         }
 
-        // === DỮ LIỆU ĐỀ (PASTE NGUYÊN TỪ CODE GỐC CỦA BẠN VÀO ĐÂY) ===
+        // === DỮ LIỆU CÂU HỎI - DÁN TỪ CODE CỦA BẠN ===
 const mcQuestions = [
             {q:"Câu 1: Công thức liên hệ giữa vận tốc, gia tốc và quãng đường đi được trong chuyển động thẳng biến đổi đều?",o:["A. v + v0 = √2𝑎𝑠.","B. v2 + v02 = 2as.","C. v - v0 = √2𝑎𝑠.","D. v2 - v02 = 2as."],c:3},
             {q:"Câu 2: Chọn câu đúng. Phương trình độ dịch chuyển của chuyển động thẳng nhanh dần đều là:",o:["A. s = v0 + at2/2  (a, v0 cùng dấu).","B. s = v0 + at2/2  (a, v0 trái dấu).","C. d = v0t + at2/2  (a, v0 cùng dấu).","D. d = v0t + at2/2  (a, v0 trái dấu)."],c:2},
@@ -596,11 +560,11 @@ const mcQuestions = [
             {q:"Câu 9: Người ta treo một cái đèn trọng lượng P = 3N vào một giá đỡ gồm hai thanh cứng nhẹ AB và AC như hình vẽ. Biết rằng α = 60° và g = 10m/s^2. Hãy xác định độ lớn của lực mà bóng đèn tác dụng lên thanh AB.",a:"F_AB = 3 N"},
             {q:"Câu 10: Quả cầu m = 4 kg, bán kính R = 15 cm tựa vào tường trơn nhẵn và được giữ nằm yên nhờ một dây treo gắn vào tường tại A, chiều dài dây AB = 15 cm. Tìm lực căng của dây và lực nén của quả cầu lên tường. Lấy g = 10 m/s².",a:"T = 40 N, N = 40 N"},
         ];
+
+        let allQuestions = [];
         let challengeQuestions = [];
         let currentIndex = 0;
         let streak = 0;
-        let totalCorrect = 0;
-        let totalTracNghiem = 0;
 
         function shuffle(array) {
             const copy = [...array];
@@ -611,190 +575,119 @@ const mcQuestions = [
             return copy;
         }
 
-        // Render trắc nghiệm nhiều lựa chọn
-        function renderMC(container, q, qNum) {
-            const card = document.createElement('div');
-            card.className = 'card question-card';
-            card.innerHTML = `
-                <div class="question-num">Câu ${qNum}</div>
-                <div class="question-text">${q.q}</div>
-                <div class="flex flex-col gap-4"></div>
-            `;
-            container.appendChild(card);
-            const opts = card.querySelector('.flex');
-            shuffle(q.o.map((text, i) => ({text, correct: i === q.c}))).forEach(op => {
-                const label = document.createElement('label');
-                label.className = 'option';
-                label.innerHTML = `<input type="radio" name="mc${qNum}" value="${op.correct}"> ${op.text}`;
-                opts.appendChild(label);
+        function initAllQuestions() {
+            allQuestions = [
+                ...shuffle(mcQuestions),
+                ...shuffle(dsGroups.flatMap(g => g.phat)),
+                ...shuffle(shortQs.map(s => ({type: 'short', q: s[0], a: s[1]}))),
+                ...shuffle(essayQs.map(e => ({type: 'essay', q: e.q, a: e.a})))
+            ];
+        }
+
+        function applyImages() {
+            document.querySelectorAll('#image-bank img').forEach(img => {
+                const alt = img.alt;
+                document.querySelectorAll(`img[data-img="${alt}"]`).forEach(target => target.src = img.src);
             });
         }
 
-        // Render đúng sai (dạng bảng)
-        function renderDS(container, group, startNum) {
-            const card = document.createElement('div');
-            card.className = 'card question-card';
-            let html = `<div class="question-num">Nhóm câu</div><div class="question-text">${group.title}</div>`;
-            html += `<table class="ds-table"><thead><tr><th>Phát biểu</th><th>Đúng / Sai</th></tr></thead><tbody>`;
-            group.phat.forEach((p, i) => {
-                const qNum = startNum + i;
-                totalTracNghiem++;
-                html += `<tr><td>${p.q}</td><td class="flex gap-6 justify-center">`;
-                shuffle(p.o.map((text, j) => ({text, correct: j === p.c}))).forEach(op => {
-                    html += `<label class="option"><input type="radio" name="ds${qNum}" value="${op.correct}">${op.text}</label>`;
-                });
-                html += `</td></tr>`;
+        // Theme & Settings
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme || 'default';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
             });
-            html += `</tbody></table>`;
-            card.innerHTML = html;
-            container.appendChild(card);
-        }
+        });
+        document.getElementById('settings-btn').addEventListener('click', e => {
+            e.stopPropagation();
+            document.getElementById('setting-overlay').classList.toggle('show');
+        });
+        document.getElementById('setting-overlay').addEventListener('click', e => {
+            if (e.target === document.getElementById('setting-overlay')) {
+                document.getElementById('setting-overlay').classList.remove('show');
+            }
+        });
 
-        // Render trả lời ngắn
-        function renderShort(container, sq, qNum) {
-            const card = document.createElement('div');
-            card.className = 'card question-card';
-            card.innerHTML = `
-                <div class="question-num">Câu ${qNum}</div>
-                <b>${sq[0]}</b>
-                <input type="text" class="fill-input" placeholder="Nhập đáp án">
-            `;
-            container.appendChild(card);
-        }
-
-        // Render tự luận
-        function renderEssay(container, e, qNum) {
-            const card = document.createElement('div');
-            card.className = 'card question-card';
-            card.innerHTML = `
-                <div class="question-num">Câu ${qNum}</div>
-                <b>${e.q}</b>
-                <textarea placeholder="Nhập đáp án tự luận..."></textarea>
-                <div class="essay-answer"><b>Đáp án mẫu:</b><br>${e.a}</div>
-            `;
-            container.appendChild(card);
-        }
-
-        // Áp dụng hình ảnh từ image-bank
-        function applyImagesByAlt() {
-            const bank = document.getElementById('image-bank');
-            if (!bank) return;
-            const imgs = bank.querySelectorAll('img');
-            imgs.forEach(img => {
-                const alt = img.alt.trim();
-                const match = alt.match(/^(\d+) (tln?|tl)( dang(\d+))?$/);
-                if (!match) return;
-                const num = parseInt(match[1]);
-                const type = match[2]; // tl hoặc tln
-                const dang = match[4] ? parseInt(match[4]) : null;
-
-                const questions = document.querySelectorAll('.card.question-card');
-                questions.forEach(qCard => {
-                    const bTag = qCard.querySelector('b');
-                    if (!bTag) return;
-                    const text = bTag.textContent;
-                    const qNum = parseInt(text.match(/Câu (\d+)/)?.[1] || 0);
-                    const qDang = parseInt(text.match(/DẠNG (\d+)/)?.[1] || 0);
-                    if (qNum === num && (dang === null || dang === qDang)) {
-                        const clone = img.cloneNode();
-                        clone.className = 'question-image';
-                        clone.style.display = 'block';
-                        const textarea = qCard.querySelector('textarea');
-                        if (textarea) {
-                            qCard.insertBefore(clone, textarea);
-                        } else {
-                            qCard.appendChild(clone);
-                        }
-                    }
-                });
-            });
-        }
-
-        // === CHẾ ĐỘ THI (toàn bộ đề) ===
+        // === CHẾ ĐỘ THI ===
         function startExamMode() {
+            initAllQuestions();
             document.getElementById('mode-selection').classList.add('hidden');
             document.getElementById('quiz-area').classList.remove('hidden');
             document.getElementById('exam-mode').classList.remove('hidden');
 
-            const container = document.getElementById('exam-content');
+            const container = document.getElementById('exam-questions');
             container.innerHTML = '';
-            totalTracNghiem = 0;
-            totalCorrect = 0;
-
             let qNum = 1;
 
-            // Phần I
-            container.innerHTML += '<div class="part-title">PHẦN I - TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</div>';
-            shuffle(mcQuestions).forEach(q => {
-                renderMC(container, q, qNum++);
-                totalTracNghiem++;
-            });
-
-            // Phần II
-            container.innerHTML += '<div class="part-title">PHẦN II - TRẮC NGHIỆM ĐÚNG SAI</div>';
-            const dsStart = qNum;
-            shuffle(dsGroups).forEach(group => {
-                renderDS(container, group, qNum);
-                qNum += group.phat.length;
-            });
-
-            // Phần III
-            container.innerHTML += '<div class="part-title">PHẦN III – TRẢ LỜI NGẮN</div>';
-            shuffle(shortQs).forEach(sq => {
-                renderShort(container, sq, qNum++);
-            });
-
-            // Phần IV
-            container.innerHTML += '<div class="part-title">PHẦN IV – TỰ LUẬN</div>';
-            shuffle(essayQs).forEach(e => {
-                renderEssay(container, e, qNum++);
-            });
-
-            applyImagesByAlt();
-        }
-
-        // === CHẾ ĐỘ THỬ THÁCH (bỏ tự luận) ===
-        function prepareChallenge() {
-            challengeQuestions = [];
-            shuffle(mcQuestions).forEach(q => challengeQuestions.push({type: 'mc', q: q.q, o: q.o, c: q.c}));
-            dsGroups.forEach(g => g.phat.forEach(p => challengeQuestions.push({type: 'tf', q: p.q, o: p.o, c: p.c})));
-            shuffle(shortQs).forEach(sq => challengeQuestions.push({type: 'short', q: sq[0], a: sq[1]}));
-            shuffle(challengeQuestions);
-        }
-
-        function showChallengeQuestion() {
-            const q = challengeQuestions[currentIndex];
-            const total = challengeQuestions.length;
-            document.getElementById('challenge-progress').textContent = `Câu ${currentIndex + 1} / ${total}`;
-
-            const container = document.getElementById('current-question');
-            container.innerHTML = `
-                <div class="question-num">Câu ${currentIndex + 1}</div>
-                <div class="question-text">${q.q || q.question}</div>
-            `;
-
-            if (q.type === 'mc' || q.type === 'tf') {
+            // Phần trắc nghiệm
+            container.innerHTML += '<div class="part-title">PHẦN TRẮC NGHIỆM</div>';
+            mcQuestions.concat(dsGroups.flatMap(g => g.phat)).forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'card question-card';
+                card.innerHTML = `<div class="question-num">Câu ${qNum++}</div><div class="question-text">${q.q}</div>`;
                 const optsDiv = document.createElement('div');
-                optsDiv.className = 'flex flex-col gap-4 mt-6';
+                optsDiv.className = 'flex flex-col gap-4';
                 shuffle(q.o.map((t, i) => ({t, correct: i === q.c}))).forEach(op => {
-                    const label = document.createElement('label');
-                    label.className = 'option';
-                    label.innerHTML = `<input type="radio" name="chal_q" value="${op.correct}"> ${op.t}`;
-                    optsDiv.appendChild(label);
+                    optsDiv.innerHTML += `<label class="option"><input type="radio" name="q${qNum}" value="${op.correct}">${op.t}</label>`;
                 });
-                container.appendChild(optsDiv);
-            } else if (q.type === 'short') {
-                container.innerHTML += `<input id="chal_input" class="fill-input" type="text" placeholder="Nhập đáp án">`;
-            }
+                card.appendChild(optsDiv);
+                container.appendChild(card);
+            });
 
-            document.getElementById('submit-current').classList.remove('hidden');
-            document.getElementById('next-question').classList.add('hidden');
-            document.getElementById('challenge-feedback').classList.add('hidden');
+            // Phần trả lời ngắn & tự luận (không tính điểm, chỉ hiển thị)
+            container.innerHTML += '<div class="part-title">PHẦN TỰ LUẬN VÀ TRẢ LỜI NGẮN</div>';
+            shortQs.concat(essayQs).forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card question-card';
+                card.innerHTML = `<div class="question-num">Câu ${qNum++}</div><div class="question-text">${item.q || item[0]}</div>`;
+                if (item.type === 'essay' || !item.type) {
+                    card.innerHTML += `<textarea placeholder="Viết đáp án..."></textarea><div class="mt-4 p-4 bg-gray-100 rounded-lg"><strong>Đáp án mẫu:</strong><br>${item.a || item[1]}</div>`;
+                } else {
+                    card.innerHTML += `<input type="text" class="fill-input" placeholder="Nhập đáp án">`;
+                }
+                container.appendChild(card);
+            });
+
+            applyImages();
         }
 
-        // === XỬ LÝ CHẾ ĐỘ THỬ THÁCH ===
-        document.getElementById('mode-challenge').onclick = () => {
-            prepareChallenge();
+        document.getElementById('submit-exam').addEventListener('click', async () => {
+            if (!confirm('Chắc chắn nộp bài?')) return;
+
+            let correct = 0;
+            const totalTracNghiem = mcQuestions.length + dsGroups.flatMap(g => g.phat).length;
+
+            document.querySelectorAll('input[type="radio"]:checked').forEach(inp => {
+                if (inp.value === 'true') correct++;
+            });
+
+            // Highlight
+            document.querySelectorAll('.option').forEach(opt => {
+                const inp = opt.querySelector('input');
+                if (inp.value === 'true') opt.classList.add('correct');
+                if (inp.checked && inp.value !== 'true') opt.classList.add('wrong');
+            });
+
+            const score10 = Math.round((correct / totalTracNghiem) * 10 * 100) / 100;
+            document.getElementById('exam-result-text').innerHTML = `
+                ${correct} / ${totalTracNghiem} câu trắc nghiệm đúng<br>
+                <span style="color:var(--success-color)">${score10} điểm</span>
+            `;
+            document.getElementById('exam-result').classList.remove('hidden');
+            document.getElementById('submit-exam').classList.add('hidden');
+
+            await sendToDiscord({ mode: 'exam', score: correct, total: totalTracNghiem });
+        });
+
+        // === CHẾ ĐỘ THỬ THÁCH (chỉ trắc nghiệm + trả lời ngắn) ===
+        function startChallengeMode() {
+            challengeQuestions = [
+                ...shuffle(mcQuestions),
+                ...shuffle(dsGroups.flatMap(g => g.phat)),
+                ...shuffle(shortQs.map(s => ({type: 'short', q: s[0], a: s[1]})))
+            ];
             currentIndex = 0;
             streak = 0;
             document.getElementById('current-streak').textContent = '0';
@@ -802,115 +695,100 @@ const mcQuestions = [
             document.getElementById('quiz-area').classList.remove('hidden');
             document.getElementById('challenge-mode').classList.remove('hidden');
             showChallengeQuestion();
-        };
+        }
 
-        document.getElementById('submit-current').onclick = () => {
+        function showChallengeQuestion() {
             const q = challengeQuestions[currentIndex];
-            let correct = false;
-            let userAnswer = '';
+            document.getElementById('challenge-progress').textContent = `Câu ${currentIndex + 1} / ${challengeQuestions.length}`;
 
-            if (q.type === 'mc' || q.type === 'tf') {
-                const selected = document.querySelector('input[name="chal_q"]:checked');
-                if (!selected) {
-                    alert('Vui lòng chọn đáp án!');
-                    return;
-                }
-                userAnswer = selected.parentElement.textContent.trim();
-                correct = selected.value === 'true';
-            } else if (q.type === 'short') {
-                const input = document.getElementById('chal_input');
-                if (!input || !input.value.trim()) {
-                    alert('Vui lòng nhập đáp án!');
-                    return;
-                }
-                userAnswer = input.value.trim().replace(/\s+/g, ' ').toLowerCase();
-                const correctAns = q.a.trim().replace(/\s+/g, ' ').toLowerCase();
-                correct = userAnswer === correctAns;
+            let html = `<div class="question-text">${q.q || q[0]}</div>`;
+            if (q.img) html += `<img class="question-image" data-img="${q.img}">`;
+
+            if (q.type === 'short' || q.a) {
+                html += `<input id="chal_input" class="fill-input mt-8" type="text" placeholder="Nhập đáp án">`;
+                document.getElementById('submit-current').classList.remove('hidden');
+                document.getElementById('next-question').classList.add('hidden');
+            } else {
+                const shuffled = shuffle(q.o.map((t, i) => ({t, correct: i === q.c})));
+                html += `<div class="flex flex-col gap-4 mt-8">`;
+                shuffled.forEach(op => {
+                    html += `<label class="option"><input type="radio" name="chal_q" value="${op.correct}">${op.t}</label>`;
+                });
+                html += `</div>`;
+                document.getElementById('submit-current').classList.remove('hidden');
+                document.getElementById('next-question').classList.add('hidden');
             }
 
+            document.getElementById('current-question').innerHTML = html;
+            document.getElementById('challenge-feedback').classList.add('hidden');
+            applyImages();
+        }
+
+        document.getElementById('submit-current').addEventListener('click', async () => {
+            const q = challengeQuestions[currentIndex];
+            let isCorrect = false;
+
+            if (q.type === 'short' || q.a) {
+                const input = document.getElementById('chal_input');
+                if (!input || !input.value.trim()) return alert('Nhập đáp án!');
+                const user = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                const ans = (q.a || q[1]).toLowerCase().replace(/\s+/g, ' ');
+                isCorrect = user === ans;
+            } else {
+                const selected = document.querySelector('input[name="chal_q"]:checked');
+                if (!selected) return alert('Chọn đáp án!');
+                isCorrect = selected.value === 'true';
+            }
+
+            const total = challengeQuestions.length;
             const fb = document.getElementById('challenge-feedback');
-            if (correct) {
+
+            if (isCorrect) {
                 streak++;
                 document.getElementById('current-streak').textContent = streak;
-                fb.innerHTML = `<strong class="text-4xl">ĐÚNG RỒI 🎉</strong>`;
+                fb.innerHTML = `<strong class="text-3xl">ĐÚNG RỒI 🎉</strong>`;
                 fb.className = 'feedback correct show';
                 document.getElementById('next-question').classList.remove('hidden');
             } else {
+                const correctAns = q.type === 'short' ? q.a : q.o[q.c];
                 fb.innerHTML = `
-                    <strong class="text-4xl">SAI 😞</strong><br>
-                    Đáp án đúng: <strong>${q.type === 'short' ? q.a : q.o[q.c]}</strong><br>
-                    Làm lại từ đầu sau <span id="countdown" class="text-4xl font-bold text-red-500">30</span> giây
+                    <strong class="text-3xl">SAI RỒI 😞</strong><br>
+                    Đáp án đúng: <strong>${correctAns}</strong><br>
+                    Chuỗi đúng: ${streak}/${total}<br>
+                    Làm lại sau <span id="countdown" class="text-4xl font-bold text-[var(--danger-color)]">10</span> giây
                 `;
                 fb.className = 'feedback wrong show';
-                let t = 30;
+
+                await sendToDiscord({ mode: 'challenge', streak: streak, total: total });
+
+                let t = 10;
                 const timer = setInterval(() => {
                     document.getElementById('countdown').textContent = --t;
-                    if (t <= 0) {
-                        clearInterval(timer);
-                        location.reload();
-                    }
+                    if (t <= 0) { clearInterval(timer); location.reload(); }
                 }, 1000);
             }
+            fb.classList.remove('hidden');
             document.getElementById('submit-current').classList.add('hidden');
-        };
+        });
 
-        document.getElementById('next-question').onclick = async () => {
+        document.getElementById('next-question').addEventListener('click', async () => {
             currentIndex++;
-            if (currentIndex >= challengeQuestions.length) {
+            const total = challengeQuestions.length;
+            if (currentIndex >= total) {
                 document.getElementById('current-question').innerHTML = `
-                    <div class="text-5xl font-bold text-[var(--success-color)] mt-12">HOÀN THÀNH THỬ THÁCH! 🏆</div>
-                    <div class="text-3xl mt-8">Chuỗi đúng: ${streak} / ${challengeQuestions.length}</div>
+                    <div class="text-4xl font-bold text-[var(--success-color)] mt-12">HOÀN THÀNH! 🏆</div>
+                    <div class="text-3xl mt-8">Streak: ${streak}/${total}</div>
+                    <button class="submit-btn card mt-12" onclick="location.reload()">Làm lại</button>
                 `;
-                document.getElementById('next-question').classList.add('hidden');
-
-                // Gửi kết quả thử thách về Discord
-                await sendToDiscord({
-                    mode: 'challenge',
-                    streak: streak,
-                    total: challengeQuestions.length
-                });
+                await sendToDiscord({ mode: 'challenge', streak: streak, total: total });
             } else {
                 showChallengeQuestion();
             }
-        };
+        });
 
-        // === NỘP BÀI CHẾ ĐỘ THI ===
-        document.getElementById('submit-exam').onclick = async () => {
-            if (!confirm('Bạn chắc chắn muốn nộp bài? Kết quả sẽ được gửi về Discord.')) return;
-
-            totalCorrect = 0;
-            document.querySelectorAll('input[type="radio"]:checked').forEach(inp => {
-                if (inp.value === 'true') totalCorrect++;
-            });
-
-            // Highlight đúng/sai
-            document.querySelectorAll('.option').forEach(opt => {
-                const inp = opt.querySelector('input');
-                if (inp && inp.value === 'true') opt.classList.add('correct');
-                if (inp && inp.checked && inp.value !== 'true') opt.classList.add('wrong');
-            });
-
-            // Hiện đáp án tự luận
-            document.querySelectorAll('.essay-answer').forEach(a => a.style.display = 'block');
-
-            document.getElementById('exam-result-text').innerHTML = 
-                `${totalCorrect} / ${totalTracNghiem} câu trắc nghiệm đúng`;
-
-            document.getElementById('exam-result').classList.remove('hidden');
-            document.getElementById('submit-exam').classList.add('hidden');
-
-            // Gửi kết quả thi về Discord
-            await sendToDiscord({
-                mode: 'exam',
-                score: totalCorrect,
-                total: totalTracNghiem
-            });
-        };
-
-        // Các nút
-        document.getElementById('mode-exam').onclick = startExamMode;
-        document.getElementById('back-to-mode') && document.getElementById('back-to-mode').addEventListener('click', () => location.reload());
+        document.getElementById('back-to-mode').addEventListener('click', () => location.reload());
+        document.getElementById('mode-exam').addEventListener('click', startExamMode);
+        document.getElementById('mode-challenge').addEventListener('click', startChallengeMode);
     </script>
 </body>
 </html>
-
